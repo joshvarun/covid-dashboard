@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COVID-19 Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" crossorigin="anonymous"></script>
+
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css"/>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js" crossorigin="anonymous"></script>
+
+    <script src="./js/countUp.min.js" type="module"></script>
+    
+</head>
+<body>
+    <header>
+        <h2>COVID-19 Dashboard</h2>
+    </header>
+    <div class="row">
+        <div class="col-md-8 left-container">
+            <div class="details-container">
+                <div class="country-div">
+                    <img src="https://www.countryflags.io/IN/flat/32.png"> <span class="country-name">India</span>
+                </div>
+                <div id="accordion" role="tablist" class="case-summary-container">
+                    <div class="card">
+                        <div class="card-header confirmed-view" role="tab" id="headingOne">
+                            <h5 class="mb-0">
+                                <a class="card-title" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Confirmed
+                                </a>
+                                <span class="case-count float-right">
+                                    1,00,000
+                                </span>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <canvas id="confirmed-case-chart" width="400" height="400"></canvas>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div>
+                                            <div class="text-center">
+                                                <label for="day-range">Select Days</label>
+
+                                                <select name="day-range" id="day-range">
+                                                    <option value="30">Last 30 Days</option>
+                                                    <option value="60">Last 60 Days</option>
+                                                    <option value="90">Last 90 Days</option>
+                                                    <option value="120">Last 120 Days</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="label-total-cases">
+                                                Total Confirmed in last 30 days
+                                            </div>
+                                            <div class="range-total-cases color-confirmed">
+                                                30,000
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <script>
+                                    let ctx = document.getElementById('confirmed-case-chart').getContext('2d');
+                                    let myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                            datasets: [{
+                                                label: 'Confirmed COVID-19 Cases',
+                                                data: [7000, 8000, 9000, 10000, 12200, 17000],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)',
+
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)',
+
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero: false,
+                                                        stepSize: 2000,
+                                                    }
+                                                }]
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="card-header active-view" role="tab" id="headingTwo">
+                            <h5 class="mb-0">
+                                <a class="collapsed card-title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Active
+                                </a>
+                                <span class="case-count float-right">
+                                    1,00,000
+                                </span>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header recovered-view" role="tab" id="headingThree">
+                            <h5 class="mb-0">
+                                <a class="collapsed card-title" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                                    Recovered
+                                </a>
+                                <span class="case-count float-right">
+                                    1,00,000
+                                </span>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header death-view" role="tab" id="headingFour">
+                            <h5 class="mb-0">
+                                <a class="collapsed card-title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+                                    Deaths
+                                </a>
+                                <span class="case-count float-right">
+                                    1,00,000
+                                </span>
+                            </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 right-container">
+            <div class="resources-container"></div>
+        </div>
+    </div>
+</body>
+</html>

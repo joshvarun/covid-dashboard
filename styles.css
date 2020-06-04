@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+body {
+    color: #555;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 16px;
+    position: relative;
+    height: 100vh;
+    font-weight: 400;
+}
+
+header {
+    background: #333333;
+    padding: 18px 24px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.left-container {
+    height: 78vh;
+    position: relative;
+    padding: 0;
+}
+
+.right-container {
+    height: 78vh;
+    width: 100%;
+    position: relative;
+    padding: 0;
+}
+
+.details-container {
+    background: #FFE7E7;
+    height: 100%;
+    margin: 36px 18px 36px 36px;
+}
+
+.resources-container {
+    background: #DDDDDD;
+    height: 100%;
+    margin: 36px 36px 36px 18px;
+}
+
+.country-div {
+    display: inline-flex;
+    padding:  4px 12px;
+    margin: 8px 12px;
+    font-weight: 600;
+    font-size: 22px;
+    border-bottom: 1px solid #333333;
+}
+.country-name {
+    margin-left: 5px;
+}
+
+.case-summary-container {
+    padding: 18px;
+}
+
+.case-count {
+    color: #ffffff;
+}
+
+.card-title {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.confirmed-view {
+    background: #C1385B;
+}
+
+.color-confirmed {
+    color: #C1385B;
+}
+
+.active-view {
+    background: #FBC33B;
+}
+
+.color-active {
+    color: #FBC33B;
+}
+
+.recovered-view {
+    background: #5BB834;
+}
+
+.color-recovered {
+    color: #5BB834;
+}
+
+.death-view {
+    background: #768090;
+}
+
+.color-death {
+    color: #768090;
+}
+
+.card-body {
+    max-height: 400px;
+}
+
+#confirmed-case-chart {
+    max-height: 180px;
+    max-width: 400px;
+    margin: auto;
+}
+
+.label-total-cases {
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-transform: uppercase;
+    margin-top: 18px;
+    text-align: center;
+}
+
+.range-total-cases {
+    font-size: 3em;
+    font-weight: 700;
+    text-align: center;
+}
+
+
