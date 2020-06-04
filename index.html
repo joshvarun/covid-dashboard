@@ -17,18 +17,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" crossorigin="anonymous"></script>
-
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <script src="./js/countUp.min.js" type="module"></script>
-    
 </head>
 <body>
     <header>
@@ -47,8 +40,8 @@
                                 <a class="card-title" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     Confirmed
                                 </a>
-                                <span class="case-count float-right">
-                                    1,00,000
+                                <span id="confirmed-count" class="case-count float-right">
+                                    -
                                 </span>
                             </h5>
                         </div>
@@ -62,9 +55,9 @@
                                     <div class="col-md-5">
                                         <div>
                                             <div class="text-center">
-                                                <label for="day-range">Select Days</label>
+                                                <label for="confirm-select-day-range">Select Days</label>
 
-                                                <select name="day-range" id="day-range">
+                                                <select name="day-range" id="confirm-select-day-range">
                                                     <option value="30">Last 30 Days</option>
                                                     <option value="60">Last 60 Days</option>
                                                     <option value="90">Last 90 Days</option>
@@ -75,46 +68,12 @@
                                             <div class="label-total-cases">
                                                 Total Confirmed in last 30 days
                                             </div>
-                                            <div class="range-total-cases color-confirmed">
-                                                30,000
+                                            <div id="range-confirmed-count" class="range-total-cases color-confirmed">
+                                                -
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <script>
-                                    let ctx = document.getElementById('confirmed-case-chart').getContext('2d');
-                                    let myChart = new Chart(ctx, {
-                                        type: 'line',
-                                        data: {
-                                            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                                            datasets: [{
-                                                label: 'Confirmed COVID-19 Cases',
-                                                data: [7000, 8000, 9000, 10000, 12200, 17000],
-                                                backgroundColor: [
-                                                    'rgba(255, 99, 132, 0.2)',
-
-                                                ],
-                                                borderColor: [
-                                                    'rgba(255, 99, 132, 1)',
-
-                                                ],
-                                                borderWidth: 1
-                                            }]
-                                        },
-                                        options: {
-                                            scales: {
-                                                yAxes: [{
-                                                    ticks: {
-                                                        beginAtZero: false,
-                                                        stepSize: 2000,
-                                                    }
-                                                }]
-                                            }
-                                        }
-                                    });
-                                </script>
                             </div>
                         </div>
                     </div>
@@ -124,8 +83,8 @@
                                 <a class="collapsed card-title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     Active
                                 </a>
-                                <span class="case-count float-right">
-                                    1,00,000
+                                <span id="active-count" class="case-count float-right">
+                                    -
                                 </span>
                             </h5>
                         </div>
@@ -142,8 +101,8 @@
                                 <a class="collapsed card-title" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
                                     Recovered
                                 </a>
-                                <span class="case-count float-right">
-                                    1,00,000
+                                <span  id="recovered-count" class="case-count float-right">
+                                    -
                                 </span>
                             </h5>
                         </div>
@@ -160,8 +119,8 @@
                                 <a class="collapsed card-title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
                                     Deaths
                                 </a>
-                                <span class="case-count float-right">
-                                    1,00,000
+                                <span id="death-count" class="case-count float-right">
+                                    -
                                 </span>
                             </h5>
                         </div>
@@ -178,5 +137,6 @@
             <div class="resources-container"></div>
         </div>
     </div>
+    <script src="js/app.js"></script>
 </body>
 </html>
