@@ -147,7 +147,7 @@ let UIController = (() => {
 
     return {
         numberFormat(number) {
-            return Intl.NumberFormat('en-IN').format(number);
+            return Intl.NumberFormat('en-US').format(number);
         },
 
         setCountry(country) {
