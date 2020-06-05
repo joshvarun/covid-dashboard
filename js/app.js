@@ -1,6 +1,9 @@
 
 let UIController = (() => {
+    let selectedCountry = 'india';
+
     let HTMLStrings = {
+        countries: '#countries',
         containerConfirm: '#container-confirmed',
         containerRecovered: '#container-recover',
         containerDeath: '#container-death',
@@ -32,10 +35,21 @@ let UIController = (() => {
     };
 
     let setTotalCasesForStatus = (data) => {
-        document.querySelector(HTMLStrings.confirmedCount).innerText = UIController.numberFormat(data[0]['Confirmed']);
-        document.querySelector(HTMLStrings.activeCount).innerText = UIController.numberFormat(data[0]['Active']);
-        document.querySelector(HTMLStrings.recoveredCount).innerText = UIController.numberFormat(data[0]['Recovered']);
-        document.querySelector(HTMLStrings.deathCount).innerText = UIController.numberFormat(data[0]['Deaths']);
+        let confirmed = 0;
+        let active = 0;
+        let recovered = 0;
+        let deaths = 0;
+
+        for (let province of data) {
+            confirmed += province['Confirmed'];
+            active += province['Active'];
+            recovered += province['Recovered'];
+            deaths += province['Deaths'];
+        }
+        document.querySelector(HTMLStrings.confirmedCount).innerText = UIController.numberFormat(confirmed);
+        document.querySelector(HTMLStrings.activeCount).innerText = UIController.numberFormat(active);
+        document.querySelector(HTMLStrings.recoveredCount).innerText = UIController.numberFormat(recovered);
+        document.querySelector(HTMLStrings.deathCount).innerText = UIController.numberFormat(deaths);
     }
 
     let setCasesForStatus = (count, status) => {
@@ -136,6 +150,10 @@ let UIController = (() => {
             return Intl.NumberFormat('en-IN').format(number);
         },
 
+        setCountry(country) {
+            selectedCountry = country;
+        },
+
         getHTMLStrings() {
             return HTMLStrings;
         },
@@ -143,8 +161,7 @@ let UIController = (() => {
         getSummaryCount() {
             let yesterday = moment().subtract(1, 'days').format().split('T')[0];
             let today = moment().format().split('T')[0];
-            console.log(yesterday);
-            axios.get('https://api.covid19api.com/country/india?from=' + yesterday + 'T00:00:00Z&to=' + today + 'T00:00:00Z')
+            axios.get('https://api.covid19api.com/country/' + selectedCountry + '?from=' + yesterday + 'T00:00:00Z&to=' + today + 'T00:00:00Z')
                 .then( response => {
                 let res = response['data'];
                 setTotalCasesForStatus(res);
@@ -156,7 +173,7 @@ let UIController = (() => {
             let fromDate = moment().subtract(delta, 'days').format().split('T')[0];
             let toDate = moment().format().split('T')[0];
 
-            axios.get('https://api.covid19api.com/total/country/india/status/' + status
+            axios.get('https://api.covid19api.com/total/country/' + selectedCountry + '/status/' + status
                 + '?from=' + fromDate + 'T00:00:00Z&to=' + toDate + 'T00:00:00Z').then( response => {
                 let res = response['data'];
                 setCasesForStatus(res[res.length - 1]['Cases'] - res[0]['Cases'], status);
@@ -195,6 +212,12 @@ let UIController = (() => {
 
         document.querySelector(HTMLStrings.deathSelectDayRange).addEventListener('change', (event) => {
             UIController.getCasesForStatus('deaths', event.target.value);
+        });
+
+        document.querySelector(HTMLStrings.countries).addEventListener('change', (event) => {
+            UIController.setCountry(event.target.value);
+            UIController.getSummaryCount();
+            document.querySelector(HTMLStrings.confirmedCard).dispatchEvent(new Event('click'));
         });
 
         document.querySelector(HTMLStrings.deathCard).addEventListener('click', () => {
