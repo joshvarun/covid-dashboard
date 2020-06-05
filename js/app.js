@@ -164,7 +164,6 @@ let UIController = (() => {
                 return 'IT';
             default:
                 return 'IN';
-
         }
     }
 

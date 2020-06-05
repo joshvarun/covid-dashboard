@@ -80,8 +80,11 @@ a:hover {
 
 .card-title {
     text-decoration: none;
-    color: #ffffff;
     font-weight: 600;
+}
+
+.color-white {
+    color: #ffffff;
 }
 
 .confirmed-view {
@@ -144,6 +147,18 @@ a:hover {
     font-size: 3em;
     font-weight: 700;
     text-align: center;
+}
+
+.resources {
+    font-weight: 600;
+    font-size: 22px;
+    padding:  10px 12px;
+    margin: 8px 18px;
+    border-bottom: 1px solid #333333;
+}
+
+.resource-card {
+    margin: 20px 18px;
 }
 
 
