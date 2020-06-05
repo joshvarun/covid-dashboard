@@ -158,6 +158,8 @@ let UIController = (() => {
                 return 'GB';
             case 'france':
                 return 'FR';
+            case 'canada':
+                return 'CA';
             case 'spain':
                 return 'ES';
             case 'italy':
