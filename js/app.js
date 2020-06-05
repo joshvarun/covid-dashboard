@@ -4,6 +4,7 @@ let UIController = (() => {
 
     let HTMLStrings = {
         countries: '#countries',
+        countryDiv: '.country-div',
         containerConfirm: '#container-confirmed',
         containerRecovered: '#container-recover',
         containerDeath: '#container-death',
@@ -145,6 +146,28 @@ let UIController = (() => {
         });
     }
 
+    let getCountryFlag = (country) => {
+        switch (country) {
+            case 'india':
+                return 'IN';
+            case 'australia':
+                return 'AU';
+            case 'united-states':
+                return 'US';
+            case 'united-kingdom':
+                return 'UK';
+            case 'france':
+                return 'FR';
+            case 'spain':
+                return 'ES';
+            case 'italy':
+                return 'IT';
+            default:
+                return 'IN';
+
+        }
+    }
+
     return {
         numberFormat(number) {
             return Intl.NumberFormat('en-US').format(number);
@@ -152,6 +175,8 @@ let UIController = (() => {
 
         setCountry(country) {
             selectedCountry = country;
+            document.querySelector(HTMLStrings.countryDiv).innerHTML
+                = '<img src="https://www.countryflags.io/' + getCountryFlag(country) + '/flat/32.png"> <span class="country-name">' + country + '</span>'
         },
 
         getHTMLStrings() {

@@ -66,6 +66,7 @@ a:hover {
 }
 .country-name {
     margin-left: 5px;
+    text-transform: capitalize;
 }
 
 .case-summary-container {
