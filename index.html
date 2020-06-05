@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>COVID-19 Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -24,9 +25,9 @@
 
 </head>
 <body>
-    <header>
-        <h2 style="display: inline-block;">COVID-19 Dashboard</h2>
-        <div class="float-right m-2">
+    <div class="header">
+        <div class="title" style="display: inline-block;">COVID-19 Dashboard</div>
+        <div class="float-right country-select">
             <label for="countries">Select Country</label>
 
             <select name="countries" id="countries">
@@ -44,9 +45,9 @@
                About
             </button>
         </div>
-    </header>
+    </div>
     <div class="row">
-        <div class="col-sm-8 left-container">
+        <div class="col-lg-8 left-container">
             <div class="details-container">
                 <div class="country-div">
                     <img src="https://www.countryflags.io/IN/flat/32.png"> <span class="country-name">India</span>
@@ -80,10 +81,10 @@
                         <div id="container-confirmed" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-sm-7">
+                                    <div class="col-lg-7">
                                         <canvas class="line-chart" id="confirmed-case-chart" width="400" height="400"></canvas>
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-lg-5">
                                         <div>
                                             <div class="text-center">
                                                 <label for="confirm-select-day-range">Select Days</label>
@@ -123,10 +124,10 @@
                         <div id="container-recover" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-sm-7">
+                                    <div class="col-lg-7">
                                         <canvas class="line-chart" id="recovered-case-chart" width="400" height="400"></canvas>
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-lg-5">
                                         <div>
                                             <div class="text-center">
                                                 <label for="confirm-select-day-range">Select Days</label>
@@ -167,10 +168,10 @@
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-sm-7">
+                                        <div class="col-lg-7">
                                             <canvas class="line-chart" id="death-case-chart" width="400" height="400"></canvas>
                                         </div>
-                                        <div class="col-sm-5">
+                                        <div class="col-lg-5">
                                             <div>
                                                 <div class="text-center">
                                                     <label for="confirm-select-day-range">Select Days</label>
@@ -198,7 +199,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4 right-container">
+        <div class="col-lg-4 right-container">
             <div class="resources-container">
                 <div  class="resources">
                     Resources
