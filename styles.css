@@ -175,7 +175,7 @@ ul {
 }
 
 .country-select {
-    margin-top: 14px;
+    margin-top: 0;
 }
 
 .title {
@@ -200,5 +200,9 @@ ul {
 
     .col-lg-5 {
         margin-top: 15px;
+    }
+
+    .country-select {
+        margin-top: 14px;
     }
 }
