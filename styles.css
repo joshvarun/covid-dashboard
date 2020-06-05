@@ -205,4 +205,8 @@ ul {
     .country-select {
         margin-top: 14px;
     }
+
+    .active-cases {
+        width: 60%;
+    }
 }
