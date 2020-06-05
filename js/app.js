@@ -52,6 +52,31 @@ let UIController = (() => {
             document.querySelector(HTMLStrings.rangeDeathCount).innerText = UIController.numberFormat(count);
     }
 
+    let getChartColors = (status, type) => {
+        if (type === 'background') {
+            if (status === 'confirmed') {
+                return ['rgba(255, 99, 132, 0.2)']
+            }
+            if (status === 'recovered') {
+                return ['rgba(91, 184, 52, 0.2)']
+            }
+            if (status === 'deaths') {
+                return ['rgba(118, 128, 144, 0.2)']
+            }
+        }
+        if (type === 'border') {
+            if (status === 'confirmed') {
+                return ['rgba(255, 99, 132, 1)']
+            }
+            if (status === 'recovered') {
+                return ['rgba(91, 184, 52, 1)']
+            }
+            if (status === 'deaths') {
+                return ['rgba(118, 128, 144, 1)']
+            }
+        }
+    }
+
     let setChartForStatus = (data, status = 'confirmed') => {
 
         let labels = [];
@@ -86,15 +111,11 @@ let UIController = (() => {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: status+ ' COVID-19 Cases',
+                    label: status+ ' Cases',
                     data: chartData,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                    ],
-                    borderWidth: 1
+                    backgroundColor: getChartColors(status, 'background'),
+                    borderColor: getChartColors(status, 'border'),
+                    borderWidth: 2
                 }]
             },
             options: {
