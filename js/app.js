@@ -155,7 +155,7 @@ let UIController = (() => {
             case 'united-states':
                 return 'US';
             case 'united-kingdom':
-                return 'UK';
+                return 'GB';
             case 'france':
                 return 'FR';
             case 'spain':
