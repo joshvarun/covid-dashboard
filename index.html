@@ -50,7 +50,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-7">
-                                        <canvas id="confirmed-case-chart" width="400" height="400"></canvas>
+                                        <canvas class="line-chart" id="confirmed-case-chart" width="400" height="400"></canvas>
                                     </div>
                                     <div class="col-md-5">
                                         <div>
@@ -80,7 +80,7 @@
                     <div class="card mt-3">
                         <div class="card-header active-view" role="tab" id="headingTwo">
                             <h5 class="mb-0">
-                                <a class="collapsed card-title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <a id="active-card" class="collapsed card-title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     Active
                                 </a>
                                 <span id="active-count" class="case-count float-right">
@@ -90,7 +90,32 @@
                         </div>
                         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <canvas class="line-chart" id="active-case-chart" width="400" height="400"></canvas>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div>
+                                            <div class="text-center">
+                                                <label for="confirm-select-day-range">Select Days</label>
+
+                                                <select name="day-range" id="active-select-day-range">
+                                                    <option value="30">Last 30 Days</option>
+                                                    <option value="60">Last 60 Days</option>
+                                                    <option value="90">Last 90 Days</option>
+                                                    <option value="120">Last 120 Days</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="label-total-cases">
+                                                Total Active in last 30 days
+                                            </div>
+                                            <div id="range-active-count" class="range-total-cases color-active">
+                                                -
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,7 +123,7 @@
                     <div class="card mt-3">
                         <div class="card-header recovered-view" role="tab" id="headingThree">
                             <h5 class="mb-0">
-                                <a class="collapsed card-title" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                                <a id="recovered-card" class="collapsed card-title" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
                                     Recovered
                                 </a>
                                 <span  id="recovered-count" class="case-count float-right">
@@ -108,7 +133,32 @@
                         </div>
                         <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <canvas class="line-chart" id="recovered-case-chart" width="400" height="400"></canvas>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div>
+                                            <div class="text-center">
+                                                <label for="confirm-select-day-range">Select Days</label>
+
+                                                <select name="day-range" id="recovered-select-day-range">
+                                                    <option value="30">Last 30 Days</option>
+                                                    <option value="60">Last 60 Days</option>
+                                                    <option value="90">Last 90 Days</option>
+                                                    <option value="120">Last 120 Days</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="label-total-cases">
+                                                Total Recovered in last 30 days
+                                            </div>
+                                            <div id="range-recovered-count" class="range-total-cases color-recovered">
+                                                -
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,7 +166,7 @@
                     <div class="card mt-3">
                         <div class="card-header death-view" role="tab" id="headingFour">
                             <h5 class="mb-0">
-                                <a class="collapsed card-title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+                                <a id="death-card" class="collapsed card-title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
                                     Deaths
                                 </a>
                                 <span id="death-count" class="case-count float-right">
@@ -125,9 +175,35 @@
                             </h5>
                         </div>
                         <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                            </div>
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <canvas class="line-chart" id="death-case-chart" width="400" height="400"></canvas>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <div class="text-center">
+                                                    <label for="confirm-select-day-range">Select Days</label>
+
+                                                    <select name="day-range" id="death-select-day-range">
+                                                        <option value="30">Last 30 Days</option>
+                                                        <option value="60">Last 60 Days</option>
+                                                        <option value="90">Last 90 Days</option>
+                                                        <option value="120">Last 120 Days</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="label-total-cases">
+                                                    Total Deaths in last 30 days
+                                                </div>
+                                                <div id="range-death-count" class="range-total-cases color-death">
+                                                    -
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>

@@ -117,11 +117,13 @@ a:hover {
     max-height: 400px;
 }
 
-#confirmed-case-chart {
+.line-chart {
     max-height: 180px;
     max-width: 400px;
     margin: auto;
 }
+
+
 
 .label-total-cases {
     font-size: 14px;

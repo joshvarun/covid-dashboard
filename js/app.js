@@ -2,14 +2,25 @@
 let UIController = (() => {
     let HTMLStrings = {
         selectDayRange: '.select-day-range',
-        rangeConfirmedCount: '#range-confirmed-count',
         confirmedCount: '#confirmed-count',
         activeCount: '#active-count',
         recoveredCount: '#recovered-count',
         deathCount: '#death-count',
+        rangeConfirmedCount: '#range-confirmed-count',
         confirmedChart: '#confirmed-case-chart',
-        confirmSelectDayRange: '#confirm-select-day-range'
-
+        confirmSelectDayRange: '#confirm-select-day-range',
+        activeCard: '#active-card',
+        rangeActiveCount: '#range-active-count',
+        activeChart: '#active-case-chart',
+        activeSelectDayRange: '#active-select-day-range',
+        recoveredCard: '#recovered-card',
+        rangeRecoveredCount: '#range-recovered-count',
+        recoveredChart: '#recovered-case-chart',
+        recoveredSelectDayRange: '#recovered-select-day-range',
+        deathCard: '#death-card',
+        rangeDeathCount: '#range-death-count',
+        deathChart: '#death-case-chart',
+        deathSelectDayRange: '#death-select-day-range'
     };
 
     let setTotalCasesForStatus = (data) => {
@@ -19,8 +30,18 @@ let UIController = (() => {
         document.querySelector(HTMLStrings.deathCount).innerText = UIController.numberFormat(data[0]['Deaths']);
     }
 
-    let setCasesForStatus = (count) => {
-        document.querySelector(HTMLStrings.rangeConfirmedCount).innerText = UIController.numberFormat(count);
+    let setCasesForStatus = (count, status) => {
+        if (status === 'active')
+            document.querySelector(HTMLStrings.rangeActiveCount).innerText = UIController.numberFormat(count);
+
+        if (status === 'confirmed')
+            document.querySelector(HTMLStrings.rangeConfirmedCount).innerText = UIController.numberFormat(count);
+
+        if (status === 'recovered')
+            document.querySelector(HTMLStrings.rangeRecoveredCount).innerText = UIController.numberFormat(count);
+
+        if (status === 'deaths')
+            document.querySelector(HTMLStrings.rangeDeathCount).innerText = UIController.numberFormat(count);
     }
 
     let setChartForStatus = (data, status = 'confirmed') => {
@@ -38,13 +59,21 @@ let UIController = (() => {
         labels.push(new Date().getDate() + " " + months[new Date().getMonth()]);
         chartData.push(data[data.length - 1]['Cases']);
 
-        let ctx = document.querySelector(HTMLStrings.confirmedChart);
+        let chartName = HTMLStrings.confirmedChart;
+        if (status === 'active')
+            chartName = HTMLStrings.activeChart;
+        if (status === 'recovered')
+            chartName = HTMLStrings.recoveredChart;
+        if (status === 'deaths')
+            chartName = HTMLStrings.deathChart;
+
+        let ctx = document.querySelector(chartName);
         let statusChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Confirmed COVID-19 Cases',
+                    label: 'COVID-19 Cases',
                     data: chartData,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -96,7 +125,7 @@ let UIController = (() => {
             axios.get('https://api.covid19api.com/total/country/india/status/' + status
                 + '?from=' + fromDate + 'T00:00:00Z&to=' + toDate + 'T00:00:00Z').then( response => {
                 let res = response['data'];
-                setCasesForStatus(res[res.length - 1]['Cases'] - res[0]['Cases']);
+                setCasesForStatus(res[res.length - 1]['Cases'] - res[0]['Cases'], status);
                 setChartForStatus(res, status);
             });
         }
@@ -109,6 +138,22 @@ let UIController = (() => {
     let setupEventListeners = () => {
         document.querySelector(HTMLStrings.confirmSelectDayRange).addEventListener('change', (event) => {
             UIController.getCasesForStatus('confirmed', event.target.value);
+        });
+
+        document.querySelector(HTMLStrings.recoveredSelectDayRange).addEventListener('change', (event) => {
+            UIController.getCasesForStatus('recovered', event.target.value);
+        });
+
+        document.querySelector(HTMLStrings.activeSelectDayRange).addEventListener('change', (event) => {
+            UIController.getCasesForStatus('active', event.target.value);
+        });
+
+        document.querySelector(HTMLStrings.deathCard).addEventListener('click', () => {
+            UIController.getCasesForStatus('deaths');
+        });
+
+        document.querySelector(HTMLStrings.recoveredCard).addEventListener('click', () => {
+            UIController.getCasesForStatus('recovered');
         });
     };
 
