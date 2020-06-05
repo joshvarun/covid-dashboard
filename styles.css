@@ -161,4 +161,14 @@ a:hover {
     margin: 20px 18px;
 }
 
+ul {
+    padding: 18px;
+}
 
+.modal-link {
+    color: #333333;
+}
+.modal-link:hover{
+    color: #333333;
+    text-decoration: underline;
+}
