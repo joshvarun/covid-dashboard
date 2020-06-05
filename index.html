@@ -50,7 +50,7 @@
                     <div class="card">
                         <div class="card-header confirmed-view" role="tab" id="headingOne">
                             <h5 class="mb-0">
-                                <a class="card-title" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <a id='confirmed-card' class="card-title" data-toggle="collapse" href="#container-confirmed" aria-expanded="true" aria-controls="container-confirmed">
                                     Confirmed
                                 </a>
                                 <span id="confirmed-count" class="case-count float-right">
@@ -59,7 +59,7 @@
                             </h5>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                        <div id="container-confirmed" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-7">
@@ -78,7 +78,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="label-total-cases">
+                                            <div class="label-total-cases label-total-confirmed">
                                                 Total Confirmed in last 30 days
                                             </div>
                                             <div id="range-confirmed-count" class="range-total-cases color-confirmed">
@@ -94,7 +94,7 @@
                     <div class="card mt-3">
                         <div class="card-header recovered-view" role="tab" id="headingThree">
                             <h5 class="mb-0">
-                                <a id="recovered-card" class="collapsed card-title" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                                <a id="recovered-card" class="collapsed card-title" data-toggle="collapse" href="#container-recover" aria-expanded="false" aria-controls="collapseTwo">
                                     Recovered
                                 </a>
                                 <span  id="recovered-count" class="case-count float-right">
@@ -102,7 +102,7 @@
                                 </span>
                             </h5>
                         </div>
-                        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div id="container-recover" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-7">
@@ -121,7 +121,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="label-total-cases">
+                                            <div class="label-total-cases label-total-recovered">
                                                 Total Recovered in last 30 days
                                             </div>
                                             <div id="range-recovered-count" class="range-total-cases color-recovered">
@@ -137,7 +137,7 @@
                     <div class="card mt-3">
                         <div class="card-header death-view" role="tab" id="headingFour">
                             <h5 class="mb-0">
-                                <a id="death-card" class="collapsed card-title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+                                <a id="death-card" class="collapsed card-title" data-toggle="collapse" href="#container-death" aria-expanded="false" aria-controls="collapseTwo">
                                     Deaths
                                 </a>
                                 <span id="death-count" class="case-count float-right">
@@ -145,7 +145,7 @@
                                 </span>
                             </h5>
                         </div>
-                        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div id="container-death" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
 
                                 <div class="card-body">
                                     <div class="row">
@@ -165,7 +165,7 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="label-total-cases">
+                                                <div class="label-total-cases label-total-deaths">
                                                     Total Deaths in last 30 days
                                                 </div>
                                                 <div id="range-death-count" class="range-total-cases color-death">

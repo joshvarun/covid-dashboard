@@ -1,14 +1,19 @@
 
 let UIController = (() => {
     let HTMLStrings = {
+        containerConfirm: '#container-confirmed',
+        containerRecovered: '#container-recover',
+        containerDeath: '#container-death',
         selectDayRange: '.select-day-range',
         confirmedCount: '#confirmed-count',
         activeCount: '#active-count',
         recoveredCount: '#recovered-count',
         deathCount: '#death-count',
+        confirmedCard: '#confirmed-card',
         rangeConfirmedCount: '#range-confirmed-count',
         confirmedChart: '#confirmed-case-chart',
         confirmSelectDayRange: '#confirm-select-day-range',
+        confirmedLabel: '.label-total-confirmed',
         activeCard: '#active-card',
         rangeActiveCount: '#range-active-count',
         activeChart: '#active-case-chart',
@@ -17,10 +22,13 @@ let UIController = (() => {
         rangeRecoveredCount: '#range-recovered-count',
         recoveredChart: '#recovered-case-chart',
         recoveredSelectDayRange: '#recovered-select-day-range',
+        recoveredLabel: '.label-total-recovered',
         deathCard: '#death-card',
         rangeDeathCount: '#range-death-count',
         deathChart: '#death-case-chart',
-        deathSelectDayRange: '#death-select-day-range'
+        deathSelectDayRange: '#death-select-day-range',
+        deathLabel: '.label-total-deaths',
+
     };
 
     let setTotalCasesForStatus = (data) => {
@@ -60,12 +68,17 @@ let UIController = (() => {
         chartData.push(data[data.length - 1]['Cases']);
 
         let chartName = HTMLStrings.confirmedChart;
-        if (status === 'active')
+        if (status === 'active') {
             chartName = HTMLStrings.activeChart;
-        if (status === 'recovered')
+        }
+
+        if (status === 'recovered') {
             chartName = HTMLStrings.recoveredChart;
-        if (status === 'deaths')
+        }
+
+        if (status === 'deaths') {
             chartName = HTMLStrings.deathChart;
+        }
 
         let ctx = document.querySelector(chartName);
         let statusChart = new Chart(ctx, {
@@ -73,7 +86,7 @@ let UIController = (() => {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'COVID-19 Cases',
+                    label: status+ ' COVID-19 Cases',
                     data: chartData,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -127,6 +140,21 @@ let UIController = (() => {
                 let res = response['data'];
                 setCasesForStatus(res[res.length - 1]['Cases'] - res[0]['Cases'], status);
                 setChartForStatus(res, status);
+
+                if (status === 'confirmed') {
+                    document.querySelector(HTMLStrings.confirmedLabel).innerText = "Total Confirmed in last " + delta
+                        + " days";
+                }
+
+                if (status === 'recovered') {
+                    document.querySelector(HTMLStrings.confirmedLabel).innerText = "Total Recovered in last " + delta
+                        + " days";
+                }
+
+                if (status === 'deaths') {
+                    document.querySelector(HTMLStrings.confirmedLabel).innerText = "Total Deaths in last " + delta
+                        + " days";
+                }
             });
         }
     }
@@ -144,12 +172,26 @@ let UIController = (() => {
             UIController.getCasesForStatus('recovered', event.target.value);
         });
 
+        document.querySelector(HTMLStrings.deathSelectDayRange).addEventListener('change', (event) => {
+            UIController.getCasesForStatus('deaths', event.target.value);
+        });
+
         document.querySelector(HTMLStrings.deathCard).addEventListener('click', () => {
             UIController.getCasesForStatus('deaths');
+            document.querySelector(HTMLStrings.containerConfirm).classList.remove('show')
+            document.querySelector(HTMLStrings.containerRecovered).classList.remove('show')
+        });
+
+        document.querySelector(HTMLStrings.confirmedCard).addEventListener('click', () => {
+            UIController.getCasesForStatus('confirmed');
+            document.querySelector(HTMLStrings.containerDeath).classList.remove('show')
+            document.querySelector(HTMLStrings.containerRecovered).classList.remove('show')
         });
 
         document.querySelector(HTMLStrings.recoveredCard).addEventListener('click', () => {
             UIController.getCasesForStatus('recovered');
+            document.querySelector(HTMLStrings.containerConfirm).classList.remove('show')
+            document.querySelector(HTMLStrings.containerDeath).classList.remove('show')
         });
     };
 
