@@ -144,10 +144,6 @@ let UIController = (() => {
             UIController.getCasesForStatus('recovered', event.target.value);
         });
 
-        document.querySelector(HTMLStrings.activeSelectDayRange).addEventListener('change', (event) => {
-            UIController.getCasesForStatus('active', event.target.value);
-        });
-
         document.querySelector(HTMLStrings.deathCard).addEventListener('click', () => {
             UIController.getCasesForStatus('deaths');
         });

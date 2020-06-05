@@ -74,11 +74,13 @@ a:hover {
 
 .case-count {
     color: #ffffff;
+    font-weight: 600;
 }
 
 .card-title {
     text-decoration: none;
     color: #ffffff;
+    font-weight: 600;
 }
 
 .confirmed-view {
@@ -123,7 +125,10 @@ a:hover {
     margin: auto;
 }
 
-
+.active-cases {
+    margin: 0 18px;
+    width: 50%;
+}
 
 .label-total-cases {
     font-size: 14px;

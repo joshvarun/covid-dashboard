@@ -33,6 +33,19 @@
                 <div class="country-div">
                     <img src="https://www.countryflags.io/IN/flat/32.png"> <span class="country-name">India</span>
                 </div>
+                <div class="active-cases card mt-3">
+                    <div class="card-header active-view" role="tab" id="headingTwo">
+                        <h5 class="mb-0">
+                            <a id="active-card" class="collapsed card-title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Active
+                            </a>
+                            <span id="active-count" class="case-count float-right">
+                                    -
+                                </span>
+                        </h5>
+                    </div>
+                </div>
+
                 <div id="accordion" role="tablist" class="case-summary-container">
                     <div class="card">
                         <div class="card-header confirmed-view" role="tab" id="headingOne">
@@ -69,48 +82,6 @@
                                                 Total Confirmed in last 30 days
                                             </div>
                                             <div id="range-confirmed-count" class="range-total-cases color-confirmed">
-                                                -
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mt-3">
-                        <div class="card-header active-view" role="tab" id="headingTwo">
-                            <h5 class="mb-0">
-                                <a id="active-card" class="collapsed card-title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Active
-                                </a>
-                                <span id="active-count" class="case-count float-right">
-                                    -
-                                </span>
-                            </h5>
-                        </div>
-                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-7">
-                                        <canvas class="line-chart" id="active-case-chart" width="400" height="400"></canvas>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div>
-                                            <div class="text-center">
-                                                <label for="confirm-select-day-range">Select Days</label>
-
-                                                <select name="day-range" id="active-select-day-range">
-                                                    <option value="30">Last 30 Days</option>
-                                                    <option value="60">Last 60 Days</option>
-                                                    <option value="90">Last 90 Days</option>
-                                                    <option value="120">Last 120 Days</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="label-total-cases">
-                                                Total Active in last 30 days
-                                            </div>
-                                            <div id="range-active-count" class="range-total-cases color-active">
                                                 -
                                             </div>
                                         </div>
